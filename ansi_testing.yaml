@@ -2,20 +2,26 @@
   hosts: localhost
   become: true
   tasks:
-    - name: "check if telnet is already installed or not"
-      shell: |
-        rpm -qa |grep -i telnet
-        if [ $? -eq 0 ]; then
-        echo "Telnet is already installed"
-        else
-        yum install telnet -y
-        if [ $? -eq 0 ]; then
-        echo "Telnet is installed"
-        else
-        echo "Failed to install"
-        exit 1
-        fi
-        fi
+    - name: Install telnet using shell script
+      hosts: localhost
+      become: true
+      tasks:
+        - name: Check and install telnet via shell
+          shell: |
+            if rpm -qa | grep -i telnet; then
+              echo "Telnet is already installed ✅"
+            else
+              echo "Telnet not found. Installing..."
+              yum install telnet -y
+              if [ $? -eq 0 ]; then
+                echo "Telnet installed successfully ✅"
+              else
+                echo "Failed to install Telnet ❌"
+                exit 1
+              fi
+            fi
+          args:
+            executable: /bin/bash
 
 
 
