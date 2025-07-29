@@ -19,7 +19,7 @@
 
     - name: "start services"
       systemd:
-        name: telnet
+        name: telnet.socket
         state: started
 
 
