@@ -2,12 +2,8 @@
   hosts: localhost
   become: true
   tasks:
-    - name: Install telnet using shell script
-      hosts: localhost
-      become: true
-      tasks:
-        - name: Check and install telnet via shell
-          shell: |
+    - name: Check and install telnet via shell
+      shell: |
             if rpm -qa | grep -i telnet; then
               echo "Telnet is already installed ✅"
             else
