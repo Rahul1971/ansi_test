@@ -17,12 +17,6 @@
         fi
         fi
 
-    - name: "start services"
-      systemd:
-        name: telnet.socket
-        state: started
-      ignore_errors: true
-
 
 
 
