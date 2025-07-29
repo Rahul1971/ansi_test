@@ -1,0 +1,27 @@
+- name: "Install telnet using ansi"
+  hosts: localhost
+  become: true
+  tasks:
+    - name: "check if telnet is already installed or not"
+      shell: |
+        rpm -qa |grep -i telnet
+        if [ $? -eq 0 ]; then
+        echo "Telnet is already installed"
+        else
+        yum install telnet -y
+        if [ $? -eq 0 ]; then
+        echo "Telnet is installed"
+        else
+        echo "Failed to install"
+        exit 1
+        fi
+        fi
+
+    - name: "start services"
+      systemd:
+        name: telnet
+        state: started
+
+
+
+
