@@ -21,7 +21,7 @@
       systemd:
         name: telnet.socket
         state: started
-        ignore_errors: true
+      ignore_errors: true
 
 
 
