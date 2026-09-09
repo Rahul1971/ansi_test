@@ -19,6 +19,10 @@
       args:
           executable: /bin/bash
 
+     - name: print message
+       debug:
+	msg: "printing message"
+
 
 
 
